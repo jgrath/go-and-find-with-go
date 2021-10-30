@@ -69,4 +69,3 @@ func (testSuite *PropertyStoreSuite) TestFindSystemProperties() {
 		testSuite.T().Errorf("incorrect details, expected %v, got %v", "name-1", propertySettings[0].Name)
 	}
 }
-

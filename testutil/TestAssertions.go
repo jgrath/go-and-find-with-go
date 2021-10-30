@@ -27,7 +27,7 @@ func Assert200(t *testing.T, recorder *httptest.ResponseRecorder) {
 
 func Assert422(t *testing.T, recorder *httptest.ResponseRecorder) {
 	if recorder.Code != http.StatusUnprocessableEntity {
-		t.Errorf("Incorrect http response code. Got: [%v] expected: [%v]",recorder.Code, http.StatusOK)
+		t.Errorf("Incorrect http response code. Got: [%v] expected: [%v]", recorder.Code, http.StatusOK)
 	}
 }
 
@@ -37,5 +37,3 @@ func Assert500(t *testing.T, recorder *httptest.ResponseRecorder) {
 			recorder.Code, http.StatusOK)
 	}
 }
-
-

@@ -15,7 +15,7 @@ func (mockedStore *MockPropertyStoreStruct) FindProperties() ([]*SystemProperty,
 	return mockedObject.Get(0).([]*SystemProperty), mockedObject.Error(1)
 }
 
-func (mockedStore *MockPropertyStoreStruct) AddProperty(property *SystemProperty) (error){
+func (mockedStore *MockPropertyStoreStruct) AddProperty(property *SystemProperty) error {
 	mockedObject := mockedStore.Called()
 	return mockedObject.Error(0)
 }

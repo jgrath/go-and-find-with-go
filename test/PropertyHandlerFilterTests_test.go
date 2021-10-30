@@ -1,7 +1,7 @@
 package test
 
 import (
-	"github.com/jgrath/go-and-find-with-go/config"
+	"github.com/jgrath/go-and-find-with-go/config/impl"
 	"github.com/jgrath/go-and-find-with-go/handlers"
 	. "github.com/jgrath/go-and-find-with-go/util"
 	"github.com/stretchr/testify/assert"
@@ -100,6 +100,6 @@ func TestFilterSystemPropertiesCombinedOnlyGroupInFilter(t *testing.T) {
 }
 
 func TestConfiguration(t *testing.T) {
-	databaseConfiguration := config.GetConfiguration().DatabaseConfiguration
+	databaseConfiguration := impl.GetConfiguration().DatabaseConfiguration
 	assert.Equal(t, databaseConfiguration.Host, "localhost")
 }

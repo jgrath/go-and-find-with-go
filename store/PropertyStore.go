@@ -11,7 +11,7 @@ var MainPropertyStore PropertyStore
 
 type PropertyStore interface {
 	FindProperties() ([]*SystemProperty, error)
-	AddProperty(*SystemProperty)(error)
+	AddProperty(*SystemProperty) error
 }
 
 type MySQLPropertyStore struct {
@@ -33,8 +33,7 @@ func (store *MySQLPropertyStore) FindProperties() ([]*SystemProperty, error) {
 		property := &SystemProperty{}
 		if err := rows.Scan(&property.Name, &property.Value, &property.DefaultValue,
 			&property.Description, &property.DataType, &property.Enabled, &property.ActiveFromDate,
-			&property.GroupCode, &property.GroupName, &property.GroupDescription);
-		err != nil {
+			&property.GroupCode, &property.GroupName, &property.GroupDescription); err != nil {
 			return nil, err
 		}
 		listOfSystemProperties = append(listOfSystemProperties, property)
@@ -42,7 +41,7 @@ func (store *MySQLPropertyStore) FindProperties() ([]*SystemProperty, error) {
 	return listOfSystemProperties, nil
 }
 
-func (store *MySQLPropertyStore) AddProperty(property *SystemProperty) (error) {
+func (store *MySQLPropertyStore) AddProperty(property *SystemProperty) error {
 
 	insertSQL := propertyInsertSQL
 

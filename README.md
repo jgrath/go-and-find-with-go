@@ -2,7 +2,7 @@
 
 go-and-find-with-go is a prototype application demonstrating good use of 
 go-lang language features and how to properly structure a testable web application.
-It covers many language features and aspects around TDD found in commercial environments.
+It covers many language features and aspects around TDD found in a commercial environment.
 
 #### READ THIS before you do anything!
 This application is only for learning and demonstration purposes and shall not be used
@@ -78,7 +78,7 @@ OR
 GO needs to be installed. Here are the actual steps for running the application.
 
 - rm go.mod (if already present)
-- go mod init github.com/username/go-and-find-with-go
+- go mod init github.com/{you-username}/go-and-find-with-go
 - go mod vendor
 - go get
 - cd test

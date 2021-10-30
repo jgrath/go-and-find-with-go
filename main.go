@@ -1,12 +1,16 @@
 package main
 
 import (
+	"database/sql"
 	"fmt"
-	"github.com/jgrath/go-and-find-with-go/config"
+	"github.com/jgrath/go-and-find-with-go/config/impl"
 	"github.com/jgrath/go-and-find-with-go/handlers"
 	"github.com/jgrath/go-and-find-with-go/store"
 	"github.com/jgrath/go-and-find-with-go/util"
 	"net/http"
+
+	"github.com/gorilla/mux"
+	_ "github.com/lib/pq"
 )
 
 func createRouter() *mux.Router {
@@ -23,8 +27,8 @@ func main() {
 
 	util.LogInfo.Println("starting application")
 
-	databaseConfiguration := config.GetConfiguration().DatabaseConfiguration
-	applicationConfiguration := config.GetConfiguration().ApplicationConfiguration
+	databaseConfiguration := impl.GetConfiguration().DatabaseConfiguration
+	applicationConfiguration := impl.GetConfiguration().ApplicationConfiguration
 
 	databaseConnectionString := "host=%s port=%d user=%s password=%s dbname=%s sslmode=%s"
 	connString := fmt.Sprintf(databaseConnectionString, databaseConfiguration.Host, databaseConfiguration.Port,
@@ -45,5 +49,5 @@ func main() {
 	store.InitializePropertyStore(&store.MySQLPropertyStore{MainDatabase: databasePointer})
 
 	r := createRouter()
-	http.ListenAndServe(":" + applicationConfiguration.AppPort, r)
+	http.ListenAndServe(":"+applicationConfiguration.AppPort, r)
 }

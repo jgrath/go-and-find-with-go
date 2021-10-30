@@ -1,7 +1,7 @@
 package util
 
 import (
-	"github.com/jgrath/go-and-find-with-go/config"
+	"github.com/jgrath/go-and-find-with-go/config/impl"
 	"log"
 	"os"
 	"time"
@@ -25,12 +25,16 @@ func init() {
 
 func setupLogging() {
 
-	logConfig := config.GetConfiguration()
+	logConfig := impl.GetConfiguration()
 
 	fileNameStamp := time.Now().Format(loggingDateTimeFormat)
 
-	loggingOutputFile, err := os.OpenFile(logConfig.Logfile + fileNameStamp + ".log",
-		os.O_APPEND|os.O_CREATE|os.O_WRONLY, 0666)
+	if _, err := os.Stat(logConfig.LogDir); os.IsNotExist(err) {
+		os.Mkdir(logConfig.LogDir, 0755)
+	}
+
+	logFile := logConfig.LogDir + "/" + logConfig.Logfile + fileNameStamp + ".log"
+	loggingOutputFile, err := os.OpenFile(logFile, os.O_APPEND|os.O_CREATE|os.O_WRONLY, 0666)
 
 	if err != nil {
 		log.Fatal(err)

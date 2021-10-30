@@ -82,4 +82,3 @@ func generateStringFromLength(length int) string {
 	}
 	return string(seed)
 }
-

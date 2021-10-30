@@ -71,7 +71,7 @@ func AddSystemProperties(w http.ResponseWriter, r *http.Request) {
 	}
 }
 
-func DefaultSystemValidation() []func(property *SystemProperty) (bool, string){
+func DefaultSystemValidation() []func(property *SystemProperty) (bool, string) {
 	return []func(property *SystemProperty) (bool, string){
 		IsGroupCodeValid,
 		IsGroupDescriptionValid,
@@ -154,4 +154,3 @@ func SystemPropertyValidation(property *SystemProperty,
 	}
 	return containsValidationErrors
 }
-

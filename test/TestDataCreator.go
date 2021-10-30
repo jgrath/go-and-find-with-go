@@ -37,4 +37,3 @@ func DefaultSystemPropertyList(defaultSetupValue string, listSize int) []SystemP
 	}
 	return populatedList
 }
-
